@@ -95,16 +95,57 @@ Copy the example configuration file:
 cp .env.example .env
 ```
 
-The application runs **100% offline out-of-the-box** using deterministic TF-IDF retrieval and rule-based explanations. 
+The application runs **100% offline out-of-the-box** using deterministic TF-IDF retrieval and rule-based explanations. You can configure any LLM provider depending on whether you want an offline or cloud-backed setup:
 
-To enable local Ollama LLM explanations and dense semantic embeddings:
+#### Option A: Offline Local Setup with Ollama (Default)
 1. Install [Ollama](https://ollama.com/).
 2. Pull the recommended lightweight models:
    ```bash
    ollama pull qwen3.5-9b-fast:latest
    ollama pull qwen3-embedding:4b
    ```
-3. Ensure Ollama is running (`ollama serve` or standard system service). Your `.env` will connect to `http://localhost:11434/v1` automatically.
+3. Keep the default settings in `.env`:
+   ```ini
+   LLM_PROVIDER=openai_compatible
+   OPENAI_API_KEY=ollama
+   OPENAI_BASE_URL=http://localhost:11434/v1
+   OPENAI_MODEL=qwen3.5-9b-fast:latest
+   EMBEDDING_MODEL=qwen3-embedding:4b
+   LLM_ALLOW_REMOTE_DATA=false
+   ```
+
+#### Option B: Cloud OpenAI API (GPT-4o, GPT-4o-mini, etc.)
+If you prefer not to run local models and have an OpenAI API key:
+```ini
+LLM_PROVIDER=openai
+OPENAI_API_KEY=sk-proj-your-openai-api-key-here
+OPENAI_BASE_URL=https://api.openai.com/v1
+OPENAI_MODEL=gpt-4o-mini
+LLM_ALLOW_REMOTE_DATA=true
+```
+
+#### Option C: Google Gemini API (via OpenAI-Compatible Endpoint)
+You can use any Google Gemini model with a free API key from [Google AI Studio](https://aistudio.google.com/):
+```ini
+LLM_PROVIDER=openai_compatible
+OPENAI_API_KEY=AIzaSy-your-google-gemini-key-here
+OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
+OPENAI_MODEL=gemini-1.5-flash
+# or gemini-2.0-flash, gemini-1.5-pro
+LLM_ALLOW_REMOTE_DATA=true
+```
+
+#### Option D: Other OpenAI-Compatible Providers (Groq, Together AI, Mistral, vLLM)
+Any provider supporting the OpenAI `/v1/chat/completions` schema works seamlessly:
+```ini
+LLM_PROVIDER=openai_compatible
+OPENAI_API_KEY=your-api-key-here
+OPENAI_BASE_URL=https://api.groq.com/openai/v1  # Example for Groq
+OPENAI_MODEL=llama-3.3-70b-versatile
+LLM_ALLOW_REMOTE_DATA=true
+```
+
+> **Note on Remote Data**: When using remote cloud providers (OpenAI, Google Gemini, Groq, etc.), set `LLM_ALLOW_REMOTE_DATA=true` so the query generator has permission to use dataset-derived metadata for retrieval enhancement.
 
 ### 5. Launch the Streamlit App
 
