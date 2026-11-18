@@ -10,7 +10,7 @@
 
 ---
 
-## 🌟 Key Highlights
+## Key Highlights
 
 - **Dynamic RAG-Guided Search Spaces**: Instead of arbitrary hyperparameter tuning grids, the system extracts dataset characteristics (missingness, class imbalance, high-cardinality, sample size) and retrieves grounded algorithmic guidance to construct targeted search spaces.
 - **Multi-Strategy Retrieval & Benchmarking**:
@@ -24,7 +24,7 @@
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```mermaid
 flowchart TD
@@ -51,7 +51,7 @@ flowchart TD
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 - **Operating System**: Linux, macOS, or Windows
 - **Python**: Version `3.10`, `3.11`, `3.12`, or `3.14`
@@ -59,7 +59,7 @@ flowchart TD
 
 ---
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
 ### 1. Clone the Repository
 
@@ -157,7 +157,7 @@ The application will open in your browser at `http://localhost:8501`.
 
 ---
 
-## 🧪 Running the Test Suite
+## Running the Test Suite
 
 The project includes 193 unit and integration tests covering data profiling, retrieval strategies, recommendation evaluation, and model training:
 
@@ -173,7 +173,7 @@ pytest tests/ --cov=src --cov-report=term-missing
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 ai-data-science-assistant/
@@ -210,7 +210,7 @@ ai-data-science-assistant/
 
 ---
 
-## 📊 End-to-End Workflow (The 16 Sections)
+## End-to-End Workflow (The 16 Sections)
 
 | Step | Module | Functionality |
 | :---: | :--- | :--- |
@@ -227,7 +227,7 @@ ai-data-science-assistant/
 
 ---
 
-## 💡 Measured Performance Gains
+## Measured Performance Gains
 
 | Dataset | Problem Characteristic | Baseline Model | RAG-Guided Model | Empirical Gain |
 | :--- | :--- | :--- | :--- | :--- |
@@ -236,14 +236,14 @@ ai-data-science-assistant/
 
 ---
 
-## 🔒 Privacy & Local Execution
+## Privacy & Local Execution
 
 - **Zero Cloud Leakage by Default**: When configured with Ollama, no data, metadata, or queries ever leave your machine.
 - **Remote Data Guard**: Remote API endpoints will reject sending dataset metadata unless explicitly opted in via `LLM_ALLOW_REMOTE_DATA=true`.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to open an issue or submit a pull request:
 
@@ -256,6 +256,6 @@ Contributions are welcome! Please feel free to open an issue or submit a pull re
 
 ---
 
-## 📜 License
+## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
